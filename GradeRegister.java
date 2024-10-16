@@ -1,0 +1,123 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Lavinia
+ */
+
+import java.util.*;
+
+public class GradeRegister {
+
+     private ArrayList<Integer> grades;
+    private ArrayList<Integer> points;
+ 
+    public GradeRegister() {
+        this.grades = new ArrayList<>();
+        this.points = new ArrayList<>();
+    }
+ 
+    public void addGradeBasedOnPoints(int points) {
+        this.points.add(points);
+        this.grades.add(pointsToGrade(points));
+    }
+ 
+    public int numberOfGrades(int grade) {
+        int count = 0;
+        for (int received : this.grades) {
+            if (received == grade) {
+                count++;
+            }
+        }
+ 
+        return count;
+    }
+ 
+    public double averageOfGrades() {
+        if (this.grades.isEmpty()) {
+            return -1;
+        }
+ 
+        int sum = 0;
+        for (int grade : this.grades) {
+            sum += grade;
+        }
+ 
+        return 1.0 * sum / this.grades.size();
+    }
+ 
+    public double averageOfPoints() {
+        if (this.points.isEmpty()) {
+            return -1;
+        }
+ 
+        int sum = 0;
+        for (int p : this.points) {
+            sum = sum + p;
+        }
+ 
+        return 1.0 * sum / this.points.size();
+    }
+ 
+    public static int pointsToGrade(int points) {
+ 
+        int grade = 0;
+        if (points < 50) {
+            grade = 0;
+        } else if (points < 60) {
+            grade = 1;
+        } else if (points < 70) {
+            grade = 2;
+        } else if (points < 80) {
+            grade = 3;
+        } else if (points < 90) {
+            grade = 4;
+        } else {
+            grade = 5;
+        }
+ 
+        return grade;
+    }
+    
+    public void averagePassingGrade(ArrayList<Integer> points) {
+        int sum = 0;
+        int count = 0;
+        
+        for(int point : points ) {
+            if(point >= 50) {
+                sum += point;
+                count++;
+            }
+        }
+        
+        if(sum == 0) {
+            System.out.println("Point average (passing): -");
+        } else {
+            System.out.println("Point average (passing): " + (double) sum / (double) count);
+        }
+        
+    }
+    
+    public ArrayList<Integer> getArrayPoints() {
+        return this.points;
+    }
+    
+    public void passPercentage(ArrayList<Integer> points) {
+        int grades = 0;
+        int participants = 0;
+        
+        for(int point : points ) {
+            if(point >= 50) {
+                grades++;
+            }
+            participants++;
+        }
+        
+        System.out.println("Pass percentage: " + (double) 100* grades/ (double) participants );
+    
+}
+}
